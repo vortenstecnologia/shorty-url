@@ -1,9 +1,13 @@
 <?php
 // Hostname for your URL shortener
-$hostname = 'http://example.com';
+$hostname = getenv('HOSTNAME');
 
 // PDO connection to the database
-$connection = new PDO('mysql:dbname=shorty;host=localhost', 'user', 'password');
+$connection = new PDO(
+    'mysql:dbname='.getenv('DATABASE_NAME').';host='.getenv('DATABASE_HOST'), 
+    getenv('DATABASE_USER'), 
+    getenv('DATABASE_PASSWORD')
+);
 
 // Choose your character set (default)
 $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
