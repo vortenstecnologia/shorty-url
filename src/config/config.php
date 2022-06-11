@@ -1,13 +1,16 @@
 <?php
+// Instance dotenv class
+// var_dump(pathinfo('/var/www/shorty-url/.env')); die();
+$pathinfo = pathinfo('/var/www/shorty-url/.env');
+$dotenv = Dotenv\Dotenv::createImmutable($pathinfo['dirname']);
+$dotenv->safeLoad();
+
+// var_dump($_ENV); die();
 // Hostname for your URL shortener
-$hostname = getenv('HOSTNAME');
+$hostname = $_ENV['HOSTNAME'];
 
 // PDO connection to the database
-$connection = new PDO(
-    'mysql:dbname='.getenv('DATABASE_NAME').';host='.getenv('DATABASE_HOST'), 
-    getenv('DATABASE_USER'), 
-    getenv('DATABASE_PASSWORD')
-);
+$connection = new PDO('mysql:dbname='.$_ENV['DATABASE_NAME'].';host='.$_ENV['DATABASE_HOST'], $_ENV['DATABASE_USER'], $_ENV['DATABASE_PASSWORD']);
 
 // Choose your character set (default)
 $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';

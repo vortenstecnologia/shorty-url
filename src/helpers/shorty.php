@@ -311,6 +311,8 @@ class Shorty {
      * Starts the program.
      */
     public function run() {
+        // var_dump($_GET); die();
+
         $q = str_replace('/', '', $_GET['q']);
 
         $url = '';
@@ -330,7 +332,7 @@ class Shorty {
             }
 
             if (preg_match('/^http[s]?\:\/\/[\w]+/', $url)) {
-                $result = $this->find($url);
+                $result = $this->find($url); 
 
                 // Not found, so save it
                 if (empty($result)) {

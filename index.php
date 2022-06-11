@@ -1,12 +1,5 @@
 <?php
-require './shorty.php';
-require './config.php';
+require_once 'vendor/autoload.php';
 
-$shorty = new Shorty($hostname, $connection);
-
-$shorty->set_chars($chars);
-$shorty->set_salt($salt);
-$shorty->set_padding($padding);
-
-$shorty->run();
+require_once 'src/services/shorty_url.php';
 ?>
